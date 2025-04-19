@@ -1,5 +1,7 @@
 package com.walletapp.controller;
 
+import com.walletapp.model.User;
+import com.walletapp.service.UserService;
 import com.walletapp.service.WalletService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +19,12 @@ public class WalletController {
 
     @Autowired
     private final WalletService walletService;
+    private final UserService userService;
 
     @GetMapping("/balance")
     public ResponseEntity<BigDecimal> getBalance() {
-
-        return ResponseEntity.ok(walletService.getBalance());
+        User user = userService.getAuthenticatedUser();
+        return ResponseEntity.ok(walletService.getBalance(user.getId()));
     }
 
 }

@@ -28,16 +28,11 @@ public class WalletService {
         }
     }
 
-    public Wallet getWallet() {
-        User user = userService.getAuthenticatedUser();
-        return getWalletByUserId(user.getId());
+    public BigDecimal getBalance(Long userId) {
+        return getWalletByUserId(userId).getBalance();
     }
 
-    public BigDecimal getBalance() {
-        return getWallet().getBalance();
-    }
-
-    public Wallet updateBalance(Optional<Long> receiver, BigDecimal amount, TransactionType transactionType) {
+    public Wallet updateBalance(Optional<Long> receiver, User sender, BigDecimal amount, TransactionType transactionType) {
 
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount must be greater than zero.");
@@ -48,7 +43,7 @@ public class WalletService {
         if(receiver.isPresent()) {
             wallet = getWalletByUserId(receiver.get());
         }else{
-            wallet = getWallet();
+            wallet = getWalletByUserId(sender.getId());
         }
 
         if (transactionType == TransactionType.WITHDRAW && wallet.getBalance().compareTo(amount) < 0) {
