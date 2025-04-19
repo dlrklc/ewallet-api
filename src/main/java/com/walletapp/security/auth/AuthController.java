@@ -1,5 +1,8 @@
 package com.walletapp.security.auth;
 
+import com.walletapp.security.dto.AuthResponse;
+import com.walletapp.security.dto.LoginRequest;
+import com.walletapp.security.dto.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

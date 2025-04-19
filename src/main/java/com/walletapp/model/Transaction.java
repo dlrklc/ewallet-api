@@ -21,12 +21,12 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "from_user_id")
-    private User fromUser;
+    @JoinColumn(name = "sender_user_id")
+    private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "to_user_id")
-    private User toUser;
+    @JoinColumn(name = "receiver_user_id")
+    private User receiver;
 
     private BigDecimal amount;
 

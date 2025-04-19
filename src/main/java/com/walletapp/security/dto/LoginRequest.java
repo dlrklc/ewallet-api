@@ -1,4 +1,4 @@
-package com.walletapp.security.auth;
+package com.walletapp.security.dto;
 
 import lombok.Data;
 

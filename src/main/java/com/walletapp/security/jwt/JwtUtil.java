@@ -36,9 +36,6 @@ public class JwtUtil {
                     .getBody()
                     .getExpiration();
 
-            //to-do: check getTime, validate for one hour
-            //long diffInMillies = expiration.getTime() - System.currentTimeMillis();
-            //return diffInMillies >= 0 && diffInMillies <= 1;
             return expiration.after(new Date());
         } catch (ExpiredJwtException e) {
             System.out.println("Token expired");

@@ -24,6 +24,8 @@ public class Wallet {
     private User user; // One wallet belongs to one user
 
     private BigDecimal balance = BigDecimal.ZERO;
-    private String currency; // TL, USD, EUR, vs.
+
+    @Enumerated(EnumType.STRING)
+    private CurrencyType currency; // TL, USD, EUR, etc.
 
 }
